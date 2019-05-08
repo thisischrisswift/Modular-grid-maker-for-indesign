@@ -1,7 +1,3 @@
-//adding basiljs
-#includepath "~/Documents/;%USERPROFILE%Documents";
-#include "basiljs/bundle/basil.js";
-
 //set document unit to points
 var myDocument = app.activeDocument;
 with (myDocument.viewPreferences) {
