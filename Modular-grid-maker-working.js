@@ -145,3 +145,72 @@ with (myDocument.viewPreferences) {
            baselineDivision = leading;
            baselineShown = true;
            }
+
+
+           // Measure
+           //PW - left and right margin
+           var measure = pw - (page.marginPreferences.properties.left + page.marginPreferences.properties.right);
+           var bodyTypeSize = measure/30;
+
+           ratioArray = [];
+           for(i = 0; i < 3; i++){
+             var newTypeScale = bodyTypeSize * ratio
+               ratioArray.push(newTypeScale);
+           };
+
+
+
+// paragraphStyles
+//Wrap it up in an anonymous function
+(function(thisObj) {
+
+  // paragraph style object
+  // these will be passed directly to the paragraphStyles.add() method
+  // so only use property names that exist in the ID DOM
+  // Type size is measure/30 for now, think more about this
+  var parstyles = [{
+    "name": "body",
+    pointSize: ratioArray[0], leading: leading,
+  }, {
+    "name": "Header",
+    pointSize: ratioArray[1], leading: leading,
+  }, {
+    "name": "Subhead",
+    pointSize: bodyTypeSize * ratio, leading: leading,
+  }, {
+    "name": "Subhead_2",
+    pointSize: bodyTypeSize * ratio, leading: leading,
+  }, {
+    "name": "Introdeck",
+    pointSize: bodyTypeSize * ratio, leading: leading,
+  }, {
+    "name": "Caption",
+    pointSize: bodyTypeSize * ratio, leading: leading,
+  }, {
+    "name": "Note",
+    pointSize: bodyTypeSize / ratio, leading: leading,
+  }, {
+    "name": "pull_quote",
+    pointSize: bodyTypeSize * ratio, leading: leading,
+  }];
+
+  var doc = app.activeDocument; // current front most document
+  var prevp = null; // the get the based on working
+  // loop the parsytles
+  for (var i = 0; i < parstyles.length; i++) {
+    // check if there is already a style with that name
+    var pexists = doc.paragraphStyles.itemByName(parstyles[i].name);
+    if (pexists !== null) {
+      // there was one set it back to null and skip this one
+      pexists = null;
+      continue; //<-- This skips
+    }
+    // there was no style with this name. So create it
+    var p = doc.paragraphStyles.add(parstyles[i]);
+    if (prevp !== null) {
+      // if we already have a previous style set the basedOn property
+      p.basedOn = prevp;
+    }
+    prevp = p; // <-- set current to previous
+  }
+})(this);
