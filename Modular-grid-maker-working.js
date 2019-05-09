@@ -153,8 +153,8 @@ with (myDocument.viewPreferences) {
            var bodyTypeSize = measure/30;
 
            ratioArray = [];
-           for(i = 0; i < 3; i++){
-             var newTypeScale = bodyTypeSize * ratio
+           for(i = 1; i < 8; i++){
+             var newTypeScale = bodyTypeSize * i;
                ratioArray.push(newTypeScale);
            };
 
@@ -169,29 +169,29 @@ with (myDocument.viewPreferences) {
   // so only use property names that exist in the ID DOM
   // Type size is measure/30 for now, think more about this
   var parstyles = [{
-    "name": "body",
-    pointSize: ratioArray[0], leading: leading,
-  }, {
     "name": "Header",
-    pointSize: ratioArray[1], leading: leading,
+    pointSize: ratioArray[4], leading: leading,
   }, {
     "name": "Subhead",
-    pointSize: bodyTypeSize * ratio, leading: leading,
+    pointSize: ratioArray[3], leading: leading,
   }, {
     "name": "Subhead_2",
-    pointSize: bodyTypeSize * ratio, leading: leading,
+    pointSize: ratioArray[2], leading: leading,
   }, {
     "name": "Introdeck",
-    pointSize: bodyTypeSize * ratio, leading: leading,
+    pointSize: ratioArray[1], leading: leading,
+  }, {
+    "name": "Body",
+    pointSize: ratioArray[0], leading: leading,
   }, {
     "name": "Caption",
-    pointSize: bodyTypeSize * ratio, leading: leading,
+    pointSize: ratioArray[0], leading: leading,
   }, {
     "name": "Note",
-    pointSize: bodyTypeSize / ratio, leading: leading,
+    pointSize: ratioArray[0], leading: leading,
   }, {
     "name": "pull_quote",
-    pointSize: bodyTypeSize * ratio, leading: leading,
+    pointSize: ratioArray[3], leading: leading,
   }];
 
   var doc = app.activeDocument; // current front most document
