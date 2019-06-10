@@ -1,13 +1,15 @@
-This is a first attempt at making a set of tools for indesign that use ratios as a base for starting all page layout project (or at least a lot of them).
+This tool generates modular and baseline grids for InDesign documents based on page size and a few parameters.
 
-Currently indesign asks what size object you want then adds a series of default (and therefore arbitrary) settings to page. The margins are 0.5” all around, type size is 12/14.4, baseline grid is based on something (I am not sure what actually). These defaults seem like a bad place to start (especially if you are new to design).
+Installation
+Download the “Modular-grid-maker-working.js” script
+Open your Scripts panel (Windows > utilities > scripts)
+Right click on “User” and click “Reveal in Finder”
+Add “Modular-grid-maker-working.js” to the folder
+InDesign should now display the script in the panel
 
-This script creates margins, a modular grid, in ratio margins, and a baseline grid based on the shape of the page and user inputs for grid and leading. Currently it is only building a van der graff based layout (which is old, and maybe boring, and historically silly?) and is best suited to specific uses like maybe a long form essay or book.
-
-
-Current version
-Sets document to points
-Creates a new doc if not being applied to an open file
-Prompts user for a grid number to create a modular grid (eg 8x8, 12x12 etc…)
-Prompts the user for a leading number (to create the baseline grid)
-…
+Use
+Start a new (or open an existing) InDesign file with whatever height and width you want (margins and bleeds will be generated in the script)
+Double click the Modular-grid-maker-working.js script
+You will be prompted with a user input window asking for a grid number. This number will be used to create both horizontal and vertical guides
+You will next be prompted to enter a leading size (this will be used to create your baseline grid system as well as ratio-based grid gutters)
+The script will then resize your document to create a page size that holds both your modular grid and your baseline grid together and create the modular grid, baseline grid, gutters, and margins.
