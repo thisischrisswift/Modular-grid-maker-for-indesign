@@ -15,3 +15,15 @@
 3. You will be prompted with a user input window asking for a grid number. This number will be used to create both horizontal and vertical guides
 4. You will next be prompted to enter a leading size (this will be used to create your baseline grid system as well as ratio-based grid gutters)
 5. The script will then resize your document to create a page size that holds both your modular grid and your baseline grid together and create the modular grid, baseline grid, gutters, and margins.
+
+### Known Issues
+1. 3x3 grid system breaks the gutter functionality. - solve it by removing gutters on 3x3 (maybe 4x4) pages
+2. Currently only applies the grid and margins to the first page of a document.
+3. If prompts are left blank the script crashes
+4. The user needs to know the leading they want before they run the script
+5. Currently only uses Van der Graff cannon page shapes
+
+### Roadmap
+1. Paragraph styles with type sizes based on page shape ratio
+2. New document starts with a ratio input (or a range of common shape suggestions), then askes for height or width maximum to create a full page layout
+3. Have a more robust inputs panel with all of the inputs in one place, be able to preview the results
