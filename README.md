@@ -1,4 +1,4 @@
-This tool generates modular and baseline grids for InDesign documents based on page size and a few parameters.
+#This tool generates modular and baseline grids for InDesign documents based on page size and a few parameters.
 
 Installation
 Download the “Modular-grid-maker-working.js” script
