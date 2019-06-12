@@ -18,7 +18,7 @@
 
 ### Known Issues
 1. 3x3 grid system breaks the gutter functionality. - solve it by removing gutters on 3x3 (maybe 4x4) pages
-2. Currently only applies the grid and margins to the first page of a document.
+2. Currently only applies the grid and margins to the first page of a document. Fixed. Now adds to master pages.
 3. If prompts are left blank the script crashes
 4. The user needs to know the leading they want before they run the script
 5. Currently only uses Van der Graff cannon page shapes
