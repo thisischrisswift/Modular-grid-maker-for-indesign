@@ -1,9 +1,10 @@
-//set document unit to points
 var myDocument = app.activeDocument;
 with (myDocument.viewPreferences) {
  horizontalMeasurementUnits = MeasurementUnits.points;
  verticalMeasurementUnits = MeasurementUnits.points;
 }
+myDocument.viewPreferences.rulerOrigin = RulerOrigin.pageOrigin;
+
 
 //apply to open doc or start new one
  var doc;
@@ -12,7 +13,6 @@ with (myDocument.viewPreferences) {
       }else{
       doc = app.documents.add();
   }
-
   //get user inputs for grid and leading
   var grid=prompt("grid unit","","add number here");
   var leading=prompt("baseline grid leading", "", "leading goes here")
@@ -76,8 +76,7 @@ with (myDocument.viewPreferences) {
       //
       //
 
-
-      //part 2
+      var master_spread1_pg1 = doc.masterSpreads.item(0).pages.item(0);// RECTO
       var ph = myDocument.documentPreferences.pageHeight;
       var pw = myDocument.documentPreferences.pageWidth;
       var ratio = ph/pw;
@@ -95,7 +94,7 @@ with (myDocument.viewPreferences) {
         var md = gridline + down;
         gridArray.push(mu)
 
-        with(myDocument.pages.item(0)){
+        with(myDocument.masterSpreads.item(0)){
         guides.add(undefined, {orientation:HorizontalOrVertical.horizontal,
         location:(mu)});
 
@@ -112,7 +111,8 @@ with (myDocument.viewPreferences) {
         var mu = gridline - up;
         var md = gridline + down;
 
-        with(myDocument.pages.item(0)){
+        with(myDocument.masterSpreads.item(1)){
+          with(master_spread1_pg1){
         guides.add(undefined, {orientation:HorizontalOrVertical.vertical,
         location:(mu)});
 
@@ -120,28 +120,80 @@ with (myDocument.viewPreferences) {
         location:(md)});
         }
       }
+      }
+      master_spread1_pg1.marginPreferences.properties = {
+        top : rh + leadingunit,
+        left: rw + vertLeadingUnit,
+        right:(rw + vertLeadingUnit) * 2,
+        bottom: (rh + leadingunit) * 2
+        };
 
-      // set the page size and bleed box
-          doc.documentPreferences.properties = {
-              documentBleedBottomOffset : 3,
-              documentBleedTopOffset : 3,
-              documentBleedInsideOrLeftOffset : 3,
-              documentBleedOutsideOrRightOffset : 3
-          };
+var master_spread1_pg2 = doc.masterSpreads.item(0).pages.item(1);// VERSO
+var ph = myDocument.documentPreferences.pageHeight;
+var pw = myDocument.documentPreferences.pageWidth;
+var ratio = ph/pw;
+var rh = myDocument.documentPreferences.pageHeight/grid;
+var rw = myDocument.documentPreferences.pageWidth/grid;
+var leadingunit = leading/grid;
+var vertLeading = leading/ratio;
+var vertLeadingUnit = vertLeading/grid;
+// // first run Y
+for (var i = 1; i < grid; i++) {
+  var gridline = i * rh;
+  var down = leadingunit * i;
+  var up = leadingunit * (grid - i);
+  var mu = gridline - up;
+  var md = gridline + down;
+  gridArray.push(mu)
 
-          // set margins
-          var page = doc.pages.item(0);
-          page.marginPreferences.properties = {
-              top : rh + leadingunit,
-              left: rw + vertLeadingUnit,
-              right:(rw + vertLeadingUnit) * 2,
-              bottom: (rh + leadingunit) * 2
-            };
+  with(myDocument.masterSpreads.item(0)){
+  guides.add(undefined, {orientation:HorizontalOrVertical.horizontal,
+  location:(mu)});
 
-          // baseline grid settings
-          // This is working, but need to develop the page resize to fit leading steps
-           with(myDocument.gridPreferences){
-           baselineStart = 0;
-           baselineDivision = leading;
-           baselineShown = true;
-           }
+  guides.add(undefined, {orientation:HorizontalOrVertical.horizontal,
+  location:(md)});
+  }
+}
+//
+// // Then run x
+for (var i = 1; i < grid; i++) {
+  var gridline = i * rw;
+  var down = vertLeadingUnit * i;
+  var up = vertLeadingUnit * (grid - i);
+  var mu = gridline - up;
+  var md = gridline + down;
+
+  with(myDocument.masterSpreads.item(1)){
+    with(master_spread1_pg2){
+  guides.add(undefined, {orientation:HorizontalOrVertical.vertical,
+  location:(mu)});
+
+  guides.add(undefined, {orientation:HorizontalOrVertical.vertical,
+  location:(md)});
+  }
+}
+}
+master_spread1_pg2.marginPreferences.properties = {
+  top : rh + leadingunit,
+  left: rw + vertLeadingUnit,
+  right:(rw + vertLeadingUnit) * 2,
+  bottom: (rh + leadingunit) * 2
+  };
+
+
+  // baseline grid settings
+  // This is working, but need to develop the page resize to fit leading steps
+   with(myDocument.gridPreferences){
+   baselineStart = 0;
+   baselineDivision = leading;
+   baselineShown = true;
+   }
+
+
+   // set the page size and bleed box
+       doc.documentPreferences.properties = {
+           documentBleedBottomOffset : 3,
+           documentBleedTopOffset : 3,
+           documentBleedInsideOrLeftOffset : 3,
+           documentBleedOutsideOrRightOffset : 3
+       };
