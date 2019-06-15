@@ -168,12 +168,22 @@ for (var i = 1; i < grid; i++) {
             }
           }
         }
-        master_spread1_pg1.marginPreferences.properties = {
-          top : rh + leadingunit,
-          left: rw + vertLeadingUnit,
-          right:(rw + vertLeadingUnit) * 2,
-          bottom: (rh + leadingunit) * 2
-        };
+        if (grid <= 4) {
+          alert("Your gutter are set to zero")
+          master_spread1_pg1.marginPreferences.properties = {
+            top : 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          };
+        } else {
+          master_spread1_pg1.marginPreferences.properties = {
+            top : rh + leadingunit,
+            left: rw + vertLeadingUnit,
+            right:(rw + vertLeadingUnit) * 2,
+            bottom: (rh + leadingunit) * 2
+          };
+        }
 
         var master_spread1_pg2 = doc.masterSpreads.item(0).pages.item(1);// VERSO
         var ph = myDocument.documentPreferences.pageHeight;
@@ -220,12 +230,29 @@ for (var i = 1; i < grid; i++) {
                     }
                   }
                 }
-                master_spread1_pg2.marginPreferences.properties = {
-                  top : rh + leadingunit,
-                  left: rw + vertLeadingUnit,
-                  right:(rw + vertLeadingUnit) * 2,
-                  bottom: (rh + leadingunit) * 2
-                };
+                if (grid <= 4) {
+                  alert("Your gutter are set to zero")
+                  master_spread1_pg2.marginPreferences.properties = {
+                    top : 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0
+                  };
+                } else {
+                  master_spread1_pg2.marginPreferences.properties = {
+                    top : rh + leadingunit,
+                    left: rw + vertLeadingUnit,
+                    right:(rw + vertLeadingUnit) * 2,
+                    bottom: (rh + leadingunit) * 2
+                  };
+                }
+
+                // master_spread1_pg2.marginPreferences.properties = {
+                //   top : rh + leadingunit,
+                //   left: rw + vertLeadingUnit,
+                //   right:(rw + vertLeadingUnit) * 2,
+                //   bottom: (rh + leadingunit) * 2
+                // };
 
 
                 // baseline grid settings
