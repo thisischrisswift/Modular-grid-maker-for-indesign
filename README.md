@@ -12,9 +12,8 @@
 ### Use
 1. Start a new (or open an existing) InDesign file with whatever height and width you want (margins and bleeds will be generated in the script)
 2. Double click the Modular-grid-maker-working.js script
-3. You will be prompted with a user input window asking for a grid number. This number will be used to create both horizontal and vertical guides
-4. You will next be prompted to enter a leading size (this will be used to create your baseline grid system as well as ratio-based grid gutters)
-5. The script will then resize your document to create a page size that holds both your modular grid and your baseline grid together and create the modular grid, baseline grid, gutters, and margins.
+3. You will be prompted with a user input window asking for a grid number and Leading size. This number will be used to create both horizontal and vertical guides as well as the gutters (vertical and horizontal)
+4. The script will then resize your document to create a page size that holds both your modular grid and your baseline grid together and create the modular grid, baseline grid, gutters, and margins.(Note if your Grid number is 4 or less gutters are set to zero as the Van der Graff margins will not work.)
 
 ### Known Issues
 1. If prompts are left blank the script crashes
