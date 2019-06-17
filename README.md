@@ -19,6 +19,7 @@
 1. If prompts are left blank the script crashes
 2. The user needs to know the leading they want before they run the script
 3. Currently only uses Van der Graff cannon page shapes
+4. Works, but gives an error if using non-facing pages
 
 ### Roadmap
 1. Paragraph styles with type sizes based on page shape ratio
