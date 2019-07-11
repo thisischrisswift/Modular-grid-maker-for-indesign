@@ -25,7 +25,7 @@ with(myDialog){
     //Create another border panel.
     with(borderPanels.add()){
       with(dialogColumns.add()){
-        staticTexts.add({staticLabel:"Grid number:"});
+        staticTexts.add({staticLabel:"Modular grid divisions:"});
       }
       with(dialogColumns.add()){
         //Create a number entry field. Note that this field uses editValue
@@ -37,7 +37,7 @@ with(myDialog){
     //Create another border panel.
     with(borderPanels.add()){
       with(dialogColumns.add()){
-        staticTexts.add({staticLabel:"Leading number:"});
+        staticTexts.add({staticLabel:"Baseline grid leading:"});
       }
       with(dialogColumns.add()){
         //Create a number entry field. Note that this field uses editValue
@@ -106,7 +106,6 @@ var lmhRounded = Math.round(leadingintoModualHeight)
 
 var newLeadingSpace = leading * (grid - 1)
 var newModalSpace = (lmhRounded * leading) * grid
-alert ("This is the ideal new page height " + (newModalSpace + newLeadingSpace))
 var newPH = newModalSpace + newLeadingSpace
 var newPW = newPH / ratio
 
@@ -115,7 +114,7 @@ var newPW = newPH / ratio
 myDocument.documentPreferences.pageWidth = newPW
 myDocument.documentPreferences.pageHeight = newPH
 
-alert("This is the current page height = " + myDocument.documentPreferences.pageHeight)
+alert("the page size has been changed to align the modular and baseline grid values ")
 
 
 //
